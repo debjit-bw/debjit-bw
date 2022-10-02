@@ -2834,7 +2834,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #1b2831;
+			background-color: rgba(10, 10, 15, 0.9);
 			color: #c8ece9;
 		}
 
@@ -3996,7 +3996,7 @@ input, select, textarea {
 	}
 
 	body.landing #footer {
-		background-color: rgba(29, 36, 42, 0.9);
+		background-color: rgba(10, 10, 15, 0.9);
 	}
 
 	body.is-mobile.landing #page-wrapper {
@@ -4015,5 +4015,5 @@ input, select, textarea {
 	}
 
 	body.is-mobile.landing #footer {
-		background-color: #1d242a;
+		background-color: rgba(10, 10, 15, 0.9);
 	}
