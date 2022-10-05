@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @debjit-bw
 - 👀 I’m interested in learning new stuff, solving problems and open source
-- 🌱 I’m currently learning solidity and assembly
+- 🌱 I’m currently learning solidity and rust
 - 💞️ I’m looking to collaborate on indie projects
 - 📫 Reach me at hello@debjit.dev or through [twitter](https://twitter.com/BhowalDebjit)
 
