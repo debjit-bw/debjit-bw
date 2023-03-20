@@ -1,0 +1,82 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	text-align: center;
+	padding: 100px 0;
+}
+
+h1 {
+	font-size: 4em;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-size: 2em;
+	margin-top: 0;
+}
+
+nav {
+	text-align: center;
+	margin-top: 50px;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.2em;
+    align-self: center;
+}
+
+/* blockquote {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: 800px;
+    padding-left: 500px;
+    padding-right: 500px;
+} */
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+    div.timeline {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* For Tablets */
+/* @media screen and (min-width: 540px) and (max-width: 780px) {
+    .view {
+        width: 600px;
+    }
+} */
+
+/* For Desktop */
+@media screen and (min-width: 780px) {
+    div.timeline {
+        justify-content: center;
+        display: flex;
+    }
+    
+    div.twitter-timeline {
+        width: 600px
+    }
+}
