@@ -55,7 +55,7 @@ a {
 } */
 
 /* For Mobile */
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 749px) {
     div.timeline {
         padding-left: 10px;
         padding-right: 10px;
@@ -70,7 +70,7 @@ a {
 } */
 
 /* For Desktop */
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 750px) {
     div.timeline {
         justify-content: center;
         display: flex;
