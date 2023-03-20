@@ -59,6 +59,7 @@ a {
     div.timeline {
         padding-left: 10px;
         padding-right: 10px;
+        padding-top: 100px;
     }
 }
 
@@ -74,6 +75,7 @@ a {
     div.timeline {
         justify-content: center;
         display: flex;
+        padding-top: 100px;
     }
     
     div.twitter-timeline {
