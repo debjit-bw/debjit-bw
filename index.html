@@ -12,11 +12,31 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 
+<script>
+    // Define an array of sentences
+    var sentences = [
+        "What's your best hotfix?",
+        "Do you wanna build a snowman?",
+        "Favourite hype word to trick VCs?",
+        "You fellow rustacean?",
+        "Can you code in assembly?",
+    ];
+
+    // Select a random sentence from the array
+    var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+
+    // Update the text of the paragraph element with the "my-text" class on page load
+    window.onload = function() {
+      var myParagraph = document.querySelector(".thoughts");
+      myParagraph.textContent = randomSentence;
+    };
+  </script>
+
 <body>
     <header>
         <h1>Debjit Bhowal</h1>
         <h2>Developer, Engineer</h2>
-        <p>Do you wanna build a snowman?</p>
+        <p class="thoughts"></p>
     </header>
     <nav>
         <ul>
