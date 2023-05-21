@@ -110,7 +110,8 @@ a {
     border: none;
     color: white;
     font-size: 1.3em; /* adjust as needed */
-    padding: 5px; /* adjust as needed */
+    padding: 5px;
+	padding-bottom: 7px;
     cursor: pointer; /* changes the mouse cursor when hovering over the button */
 	/* vertical-align: middle; */
 }
