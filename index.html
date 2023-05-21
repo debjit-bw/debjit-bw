@@ -10,27 +10,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeNhigmAAAAAOURwWroLKWb07nb7O0ZSEpxXNEn"></script>
 </head>
-
-<script>
-    // Define an array of sentences
-    var sentences = [
-        "What's your best hotfix?",
-        // "Do you wanna build a snowman?",
-        "Favourite hype word to trick VCs?",
-        "You fellow rustacean?",
-        "Can you code in assembly?",
-    ];
-
-    // Select a random sentence from the array
-    var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
-
-    // Update the text of the paragraph element with the "my-text" class on page load
-    window.onload = function() {
-      var myParagraph = document.querySelector(".thoughts");
-      myParagraph.textContent = randomSentence;
-    };
-  </script>
 
 <body>
     <header>
@@ -38,9 +20,13 @@
         <h2>Developer, Engineer</h2>
         <p class="thoughts"></p>
     </header>
+    <div id="chatbox">
+        <div id="messages"></div>
+        <input type="text" id="user-input" value="" />
+        <button id="send-button"><i class="fas fa-arrow-right"></i></button>
+    </div>
     <nav>
         <ul>
-            <!-- <li><a href="https://twitter.com/BhowalDebjit">Twitter</a></li> -->
             <li><a href="https://github.com/debjit-bw">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/debjit-bhowal/">LinkedIn</a></li>
             <li><a href="https://blog.debjit.dev">Blog</a></li>
@@ -48,9 +34,6 @@
         </ul>
     </nav>
     <br><br><br>
-    <!-- <blockquote class="timeline">
-        <a class="twitter-timeline" data-width="800" data-theme="dark" href="https://twitter.com/BhowalDebjit?ref_src=twsrc%5Etfw">Tweets by BhowalDebjit</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </blockquote> -->
     <div class="timeline">
         <div>
             <a class="twitter-timeline" data-width="800" data-theme="dark"
@@ -59,5 +42,108 @@
         </div>
     </div>
 </body>
+
+<script>
+    // Define an array of sentences
+    var sentences = [
+        "What's your best hotfix?",
+        "Favourite hype word to trick VCs?",
+        "You fellow rustacean?",
+        "Can you code in assembly?",
+    ];
+
+    var prompts = [
+        "Do you know Rust?",
+        "What is your experience with C++?",
+        "What do you want to do next?",
+        "Have you worked with Python frameworks?",
+        "Share your experience with version control systems.",
+        "Tell me about a recent project you worked on.",
+    ]
+
+    // Select a random sentence from the array
+    var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+    
+
+    // Update the text of the paragraph element with the "my-text" class on page load
+    window.onload = function () {
+        var myParagraph = document.querySelector(".thoughts");
+        myParagraph.textContent = randomSentence;
+
+        var input = document.getElementById('user-input');
+        input.value = "Ask me anything...";
+    };
+
+    // Update the initial text every 2 seconds
+    var intervalId = setInterval(function() {
+        var input = document.getElementById('user-input');
+        var randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+        input.value = randomPrompt;
+    }, 3000);
+
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            document.getElementById('send-button').click();
+        }
+    });
+
+    document.getElementById('user-input').addEventListener('focus', function() {
+        clearInterval(intervalId); // Cancel the interval
+    });
+
+    document.getElementById('send-button').addEventListener('click', function () {
+        var userInput = document.getElementById('user-input').value;
+
+        // Disable the send button while waiting for the API response
+        document.getElementById('send-button').disabled = true;
+
+        grecaptcha.ready(function () {
+            console.log("ready");
+            grecaptcha.execute('6LeNhigmAAAAAOURwWroLKWb07nb7O0ZSEpxXNEn', { action: 'submit' }).then(function (token) {
+                // Make the API call with the user's input and the reCAPTCHA token
+                console.log("token: " + token);
+                fetch('http://127.0.0.1:5000/askme', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        input: userInput,
+                        recaptchaToken: token
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Add the user's message to the chatbox
+                        console.log(data);
+                        var messageDiv = document.createElement('div');
+                        messageDiv.textContent = userInput;
+                        messageDiv.classList.add("user-message");
+                        document.getElementById('messages').appendChild(messageDiv);
+
+                        // Add the API's response to the chatbox
+                        var responseDiv = document.createElement('div');
+                        responseDiv.textContent = data.response;
+                        responseDiv.classList.add("ai-response");
+                        document.getElementById('messages').appendChild(responseDiv);
+
+                        // Clear the input field and enable the send button
+                        document.getElementById('user-input').value = '';
+                        document.getElementById('send-button').disabled = false;
+                        document.getElementById('user-input').focus();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        document.getElementById('send-button').disabled = false;
+                    });
+            })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    document.getElementById('send-button').disabled = false;
+                });
+        });
+    });
+
+</script>
 
 </html>

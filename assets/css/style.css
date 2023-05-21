@@ -62,13 +62,6 @@ a {
     }
 }
 
-/* For Tablets */
-/* @media screen and (min-width: 540px) and (max-width: 780px) {
-    .view {
-        width: 600px;
-    }
-} */
-
 /* For Desktop */
 @media screen and (min-width: 750px) {
     div.timeline {
@@ -79,4 +72,71 @@ a {
     div.twitter-timeline {
         width: 600px
     }
+}
+
+#chatbox {
+	width: 100%;
+    background-color: black;
+    border: 1px solid gray;
+    border-radius: 30px;
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    position: relative;
+	font-size: 1em;
+}
+
+#user-input {
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+	font-size: 1em;
+}
+
+#user-input:focus {
+    border-left: 3px solid grey;
+    padding: 10px;
+}
+
+
+#send-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.3em; /* adjust as needed */
+    padding: 5px; /* adjust as needed */
+    cursor: pointer; /* changes the mouse cursor when hovering over the button */
+	/* vertical-align: middle; */
+}
+
+@media screen and (min-width: 750px) {
+    #chatbox {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+.user-message,
+.ai-response {
+    padding: 10px;
+    margin: 10px 0;
+    /* border-radius: 5px; */
+}
+
+.user-message {
+    /* background-color: #007bff; */
+    color: white;
+    text-align: right;
+	border-right: 3px solid gray;
+}
+
+.ai-response {
+    background-color: rgb(46, 46, 46);
+    color: white;
 }
