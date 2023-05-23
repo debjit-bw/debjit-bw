@@ -147,3 +147,7 @@ a {
     border-radius: 15px;
     color: white;
 }
+
+.spacer {
+    height: 20px; /* Adjust this value according to your needs */
+}

@@ -22,10 +22,10 @@
     </header>
     <div id="chatbox">
         <div id="messages"></div>
-        <input type="text" id="user-input" value="" />
+        <input type="text" id="user-input" placeholder="Ask me anything...">
         <button id="send-button">
             <i class="fas fa-arrow-right" id="send-icon"></i>
-            <i class="fas fa-spinner fa-spin" id="loading-icon" style="display:none;"></i>
+            <i class="fas fa-spinner fa-spin fa-pulse" id="loading-icon" style="display:none;"></i>
         </button>
         
     </div>
@@ -65,20 +65,21 @@
         "Tell me about a recent project you worked on.",
     ]
 
+    // var spaceAdded = false;
+
     // Select a random sentence from the array
     var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
-    
 
     // Update the text of the paragraph element with the "my-text" class on page load
     window.onload = function () {
         var myParagraph = document.querySelector(".thoughts");
         myParagraph.textContent = randomSentence;
 
-        var input = document.getElementById('user-input');
-        input.value = "Ask me anything...";
+        // var input = document.getElementById('user-input');
+        // input.value = "Ask me anything...";
     };
 
-    // Update the initial text every 2 seconds
+    // Update the initial text every 3 seconds
     var intervalId = setInterval(function() {
         var input = document.getElementById('user-input');
         var randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
@@ -98,15 +99,16 @@
     document.getElementById('send-button').addEventListener('click', function () {
         clearInterval(intervalId); // Cancel the interval
 
+        
         // Hide the send icon and show the loading icon
         document.getElementById('send-icon').style.display = 'none';
         document.getElementById('loading-icon').style.display = '';
-
+        
         var userInput = document.getElementById('user-input').value;
-
+        
         // Disable the send button while waiting for the API response
         document.getElementById('send-button').disabled = true;
-
+        
         grecaptcha.ready(function () {
             console.log("ready");
             grecaptcha.execute('6LeNhigmAAAAAOURwWroLKWb07nb7O0ZSEpxXNEn', { action: 'submit' }).then(function (token) {
@@ -124,14 +126,29 @@
                     withCredentials: true,
                     crossorigin: true
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Add the user's message to the chatbox
-                        console.log(data);
-                        var messageDiv = document.createElement('div');
-                        messageDiv.textContent = userInput;
-                        messageDiv.classList.add("user-message");
-                        document.getElementById('messages').appendChild(messageDiv);
+                .then(response => response.json())
+                .then(data => {
+                    // Add the user's message to the chatbox
+                    console.log(data);
+                    
+                    // Check if the spacer is already present
+                    var spacerExists = document.getElementById('spacer');
+            
+                    if (!spacerExists) {
+                        // Create the spacer div and give it an id
+                        var spacerDiv = document.createElement('div');
+                        spacerDiv.id = 'spacer';
+                        spacerDiv.className = 'spacer';
+            
+                        // Insert the spacer div before the input field
+                        var inputField = document.getElementById('user-input');
+                        inputField.parentNode.insertBefore(spacerDiv, inputField);
+                    }
+                    
+                    var messageDiv = document.createElement('div');
+                    messageDiv.textContent = userInput;
+                    messageDiv.classList.add("user-message");
+                    document.getElementById('messages').appendChild(messageDiv);
 
                         // Add the API's response to the chatbox
                         var responseDiv = document.createElement('div');
