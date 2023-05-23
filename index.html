@@ -84,7 +84,7 @@
         var input = document.getElementById('user-input');
         var randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
         input.value = randomPrompt;
-    }, 3000);
+    }, 2000);
 
     document.getElementById('user-input').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
