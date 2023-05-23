@@ -23,7 +23,11 @@
     <div id="chatbox">
         <div id="messages"></div>
         <input type="text" id="user-input" value="" />
-        <button id="send-button"><i class="fas fa-arrow-right"></i></button>
+        <button id="send-button">
+            <i class="fas fa-arrow-right" id="send-icon"></i>
+            <i class="fas fa-spinner fa-spin" id="loading-icon" style="display:none;"></i>
+        </button>
+        
     </div>
     <nav>
         <ul>
@@ -92,6 +96,12 @@
     });
 
     document.getElementById('send-button').addEventListener('click', function () {
+        clearInterval(intervalId); // Cancel the interval
+
+        // Hide the send icon and show the loading icon
+        document.getElementById('send-icon').style.display = 'none';
+        document.getElementById('loading-icon').style.display = '';
+
         var userInput = document.getElementById('user-input').value;
 
         // Disable the send button while waiting for the API response
@@ -110,7 +120,9 @@
                     body: JSON.stringify({
                         input: userInput,
                         recaptchaToken: token
-                    })
+                    }),
+                    withCredentials: true,
+                    crossorigin: true
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -131,14 +143,22 @@
                         document.getElementById('user-input').value = '';
                         document.getElementById('send-button').disabled = false;
                         document.getElementById('user-input').focus();
+
+                        // Show the send icon and hide the loading icon
+                        document.getElementById('send-icon').style.display = '';
+                        document.getElementById('loading-icon').style.display = 'none';
                     })
                     .catch((error) => {
                         console.error('Error:', error);
+                        document.getElementById('send-icon').style.display = '';
+                        document.getElementById('loading-icon').style.display = 'none';
                         document.getElementById('send-button').disabled = false;
                     });
-            })
+                })
                 .catch((error) => {
                     console.error('Error:', error);
+                    document.getElementById('send-icon').style.display = '';
+                    document.getElementById('loading-icon').style.display = 'none';
                     document.getElementById('send-button').disabled = false;
                 });
         });
