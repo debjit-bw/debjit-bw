@@ -10,8 +10,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js?render=6LeNhigmAAAAAOURwWroLKWb07nb7O0ZSEpxXNEn"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -45,6 +45,7 @@
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
+
 </body>
 
 <script>
@@ -57,15 +58,14 @@
     ];
 
     var prompts = [
-        "Do you know Rust?",
-        "What is your experience with C++?",
-        "What do you want to do next?",
-        "Have you worked with Python frameworks?",
-        "Share your experience with version control systems.",
-        "Tell me about a recent project you worked on.",
+        "Why did you start blogging?",
+        "Tell be about the fire fighting robot",
+        "How did you use DALL-E to generate the blog covers?",
+        "What about the project on mental health?",
+        "What's a recent project you worked on?",
     ]
 
-    // var spaceAdded = false;
+    var chat_id = null;
 
     // Select a random sentence from the array
     var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
@@ -114,22 +114,27 @@
             grecaptcha.execute('6LeNhigmAAAAAOURwWroLKWb07nb7O0ZSEpxXNEn', { action: 'submit' }).then(function (token) {
                 // Make the API call with the user's input and the reCAPTCHA token
                 console.log("token: " + token);
-                fetch('http://127.0.0.1:5000/askme', {
+                // fetch('http://127.0.0.1:8000/askme', {
+                fetch('https://mygpt-7kxt74l7iq-uc.a.run.app/askme', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         input: userInput,
-                        recaptchaToken: token
+                        recaptchaToken: token,
+                        chat_id: chat_id
                     }),
                     withCredentials: true,
                     crossorigin: true
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Add the user's message to the chatbox
-                    console.log(data);
+                    // // Add the user's message to the chatbox
+                    // console.log(data);
+
+                    // set chat_id
+                    chat_id = data.chat_id;
                     
                     // Check if the spacer is already present
                     var spacerExists = document.getElementById('spacer');
@@ -144,26 +149,26 @@
                         var inputField = document.getElementById('user-input');
                         inputField.parentNode.insertBefore(spacerDiv, inputField);
                     }
-                    
+
                     var messageDiv = document.createElement('div');
                     messageDiv.textContent = userInput;
                     messageDiv.classList.add("user-message");
                     document.getElementById('messages').appendChild(messageDiv);
 
-                        // Add the API's response to the chatbox
-                        var responseDiv = document.createElement('div');
-                        responseDiv.textContent = data.response;
-                        responseDiv.classList.add("ai-response");
-                        document.getElementById('messages').appendChild(responseDiv);
+                    // Add the API's response to the chatbox
+                    var responseDiv = document.createElement('div');
+                    responseDiv.textContent = data.response;
+                    responseDiv.classList.add("ai-response");
+                    document.getElementById('messages').appendChild(responseDiv);
 
-                        // Clear the input field and enable the send button
-                        document.getElementById('user-input').value = '';
-                        document.getElementById('send-button').disabled = false;
-                        document.getElementById('user-input').focus();
+                    // Clear the input field and enable the send button
+                    document.getElementById('user-input').value = '';
+                    document.getElementById('send-button').disabled = false;
+                    document.getElementById('user-input').focus();
 
-                        // Show the send icon and hide the loading icon
-                        document.getElementById('send-icon').style.display = '';
-                        document.getElementById('loading-icon').style.display = 'none';
+                    // Show the send icon and hide the loading icon
+                    document.getElementById('send-icon').style.display = '';
+                    document.getElementById('loading-icon').style.display = 'none';
                     })
                     .catch((error) => {
                         console.error('Error:', error);

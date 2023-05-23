@@ -1,47 +1,47 @@
 body {
-	background-color: black;
-	color: white;
-	font-family: Arial, sans-serif;
-	font-size: 16px;
-	margin: 0;
-	padding: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-	text-align: center;
-	padding: 100px 0;
+    text-align: center;
+    padding: 100px 0;
 }
 
 h1 {
-	font-size: 4em;
-	margin-bottom: 0;
+    font-size: 4em;
+    margin-bottom: 0;
 }
 
 h2 {
-	font-size: 2em;
-	margin-top: 0;
+    font-size: 2em;
+    margin-top: 0;
 }
 
 nav {
-	text-align: center;
-	margin-top: 50px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 li {
-	display: inline-block;
-	margin: 0 10px;
+    display: inline-block;
+    margin: 0 10px;
 }
 
 a {
-	color: white;
-	text-decoration: none;
-	font-size: 1.2em;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
     align-self: center;
 }
 
@@ -68,22 +68,22 @@ a {
         justify-content: center;
         display: flex;
     }
-    
+
     div.twitter-timeline {
         width: 600px
     }
 }
 
 #chatbox {
-	width: 90%;
+    width: 90%;
     background-color: black;
-    border: 1px solid gray;
-    border-radius: 30px;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 35px;
     padding: 20px;
     color: white;
     box-sizing: border-box;
     position: relative;
-	font-size: 1em;
+    font-size: 1em;
     margin: 0 auto;
 }
 
@@ -94,7 +94,7 @@ a {
     outline: none;
     width: 100%;
     box-sizing: border-box;
-	font-size: 1em;
+    font-size: 1em;
 }
 
 #user-input:focus {
@@ -110,11 +110,13 @@ a {
     background: none;
     border: none;
     color: white;
-    font-size: 1.3em; /* adjust as needed */
+    font-size: 1.3em;
+    /* adjust as needed */
     padding: 5px;
-	padding-bottom: 7px;
-    cursor: pointer; /* changes the mouse cursor when hovering over the button */
-	/* vertical-align: middle; */
+    padding-bottom: 7px;
+    cursor: pointer;
+    /* changes the mouse cursor when hovering over the button */
+    /* vertical-align: middle; */
 }
 
 #send-button:disabled {
@@ -124,7 +126,7 @@ a {
 
 @media screen and (min-width: 750px) {
     #chatbox {
-        width: 50%;
+        width: 800px;
     }
 }
 
@@ -139,15 +141,20 @@ a {
     /* background-color: #007bff; */
     color: white;
     text-align: right;
-	border-right: 3px solid gray;
+    border-right: 3px solid gray;
 }
 
 .ai-response {
     background-color: rgb(46, 46, 46);
-    border-radius: 15px;
+    border-radius: 20px;
     color: white;
 }
 
 .spacer {
-    height: 20px; /* Adjust this value according to your needs */
+    height: 20px;
+    /* Adjust this value according to your needs */
+}
+
+.grecaptcha-badge { 
+    visibility: hidden;
 }
