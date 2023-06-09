@@ -25,7 +25,7 @@ var prompts = [
 
 var chat_id = null;
 
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
     // Update the initial text every 3 seconds
     var input = document.getElementById('user-input');
     var currentWord = '';
@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     currentSentenceIndex = (currentSentenceIndex + 1) % prompts.length;
                     typeSentence(); // Call the function recursively to type the next sentence
                 }
-            }, 200); // Adjust the interval time (in milliseconds) to control the typing speed
+            }, 100); // Adjust the interval time (in milliseconds) to control the typing speed
         }, 2000); // Adjust the delay time (in milliseconds) before typing each sentence
     }
 
     // Start typing the first sentence after a delay
     t2 = setTimeout(function () {
         typeSentence();
-    }, 2000); // Adjust the delay time (in milliseconds) before starting the typing animation
+    }, 0); // Adjust the delay time (in milliseconds) before starting the typing animation
 
     document.getElementById('user-input').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
@@ -187,4 +187,4 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
-});
+// });
