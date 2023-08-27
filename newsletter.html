@@ -23,7 +23,12 @@
 </head>
 
 <body>
-    <header>
+    <div id="home" class="home">
+        <a href="./">
+            <i class="fa-solid fa-arrow-left" style="padding: 20px; font-size: 2em;"></i>
+        </a>
+    </div>
+    <header id="newsletter-header">
         <h1 id="call" class="call">Tech news and<br/>business ideas</h1>
         <h2 id="subquote" class="subquote">Straight to your inbox</h2>
     </header>
@@ -32,7 +37,7 @@
         <!-- <h3>Subscribe</h3> -->
         <form id="subscribe-form" action="#" method="post">
             <input type="email" id="email-box" name="email" placeholder="avid.reader@example.com" required>
-            <button type="submit" id="signup-button">
+            <button type="submit" id="signup-button" class="clickable">
                 Subscribe
             </button>
         </form>

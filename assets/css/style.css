@@ -12,7 +12,7 @@ body {
 
 header {
     text-align: center;
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 .name {
@@ -39,7 +39,8 @@ ul {
 }
 
 li {
-    display: inline-block;
+    /* display one on top of the other */
+    display: inline-table;
     margin: 0 10px;
 }
 
@@ -174,6 +175,10 @@ a {
     margin-bottom: 0;
 }
 
+#newsletter-header {
+    padding: 80px 0px 100px 0px;
+}
+
 @media screen and (max-width: 749px) {
     .call {
         font-size: 2.5em;
@@ -223,7 +228,7 @@ a {
     caret-shape: block;
 }
 
-#signup-button {
+.clickable {
     background-color: white;
     color: black;
     border: 2px solid white;
@@ -236,7 +241,27 @@ a {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#signup-button:hover {
+.clickable:hover {
     background-color: black;
     color: white;
+}
+
+.newsletter-nav {
+    padding: 20px 20px 0px 20px;
+    text-align: center; /* Center-align content horizontally */
+}
+
+.newsletter-nav a {
+    width: 350px;
+    display: inline-block; /* Make the anchor inline-block to constrain width */
+}
+
+@media screen and (max-width: 749px) {
+    .newsletter-nav a {
+        width: 90%;
+    }
+}
+
+#home {
+    text-align: center;
 }
