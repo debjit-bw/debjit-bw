@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(result => {
                 if (result.success) {
-                    call.textContent = "You're set!";
-                    subquote.textContent = "The confirmation email is flying to your inbox.";
+                    call.textContent = "You're in!";
+                    subquote.textContent = "The confirmation is flying to your inbox.";
                     signupButton.textContent = 'Subscribed!';
                 } else {
                     call.textContent = "Aww snap?";
