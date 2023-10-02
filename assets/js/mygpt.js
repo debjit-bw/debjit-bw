@@ -75,6 +75,14 @@ document.getElementById('user-input').addEventListener('focus', function () {
 
 var ws;
 
+// add the websocket listening on page load and send a sample message so the container starts
+document.addEventListener('DOMContentLoaded', async function () {
+    console.log("loaded, triggering websocket");
+    let response = await fetch('https://mygpt2-7kxt74l7iq-uc.a.run.app');
+    // print
+    console.log(await response.json());
+});
+
 document.getElementById('send-button').addEventListener('click', function () {
     // Hide the send icon and show the loading icon
     document.getElementById('send-icon').style.display = 'none';
