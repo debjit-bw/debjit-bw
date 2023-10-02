@@ -17,7 +17,9 @@ body {
 
 .repos {
     text-align: center;
-    padding: 60px 0px 0px 0px;
+    padding: 60px 0px 20px 0px;
+    font-weight: 500;
+    font-size: 2em;
 }
 
 .name {
