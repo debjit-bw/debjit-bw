@@ -140,14 +140,15 @@ a {
     border: 1px solid #4d4d4d;
     border-radius: 13px;
     margin: 10px 0;
-    transition: background-color 0.3s, border 0.3s, transform 0.3s;
+    transition: background-color 0.3s, border 0.3s, transform 0.3s, box-shadow 0.3s;
     padding: 20px;
 }
 
 .repo-box:hover {
-    transform: scale(1.05);
-    border: 1px solid rgb(51, 55, 61);
+    transform: scale(1.02);
+    border: 1px solid rgb(31, 31, 31);
     background-color: rgb(51, 55, 61);
+    /* box-shadow: 2px 2px 5px 0px rgba(255, 255, 255); */
 }
 
 .repo-link {
