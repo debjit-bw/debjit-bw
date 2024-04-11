@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redirections</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <!-- display all url parameters on screen with a copy button beside them -->
+    <section class="redirections">
+        <h3>Redirections</h3>
+        <div id="redirections" class="redirections">
+            <div id="redirections-paragraph" class="redirections-paragraph">
+                <!-- display all url parameters here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for copying URL parameters -->
+    <script>
+        // Function to get URL parameters and display them
+        function displayURLParameters() {
+            const params = new URLSearchParams(window.location.search);
+            const redirectionsParagraph = document.getElementById('redirections-paragraph');
+
+            params.forEach((value, key) => {
+                const paramElement = document.createElement('div');
+                paramElement.textContent = `\n${key}: ${value}`
+                redirectionsParagraph.appendChild(paramElement);
+
+                // Create copy button with clickable class
+                const copyButton = document.createElement('button');
+                copyButton.textContent = 'Copy';
+                copyButton.className = 'clickable'; // Assigning the clickable class
+                // make the button small and inline
+                copyButton.style = 'width: 8%; margin-left: 10px; padding: 5px; font-size: 0.8em;';
+                copyButton.addEventListener('click', () => {
+                    navigator.clipboard.writeText(value);
+                });
+                paramElement.appendChild(copyButton);
+                
+                // add space
+                redirectionsParagraph.appendChild(document.createElement('br'));
+            });
+        }
+
+        // Call the function when the page loads
+        window.addEventListener('DOMContentLoaded', displayURLParameters);
+    </script>
+</body>
+
+</html>
