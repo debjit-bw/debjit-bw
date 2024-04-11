@@ -21,7 +21,7 @@
 <body>
     <!-- display all url parameters on screen with a copy button beside them -->
     <section class="redirections">
-        <h3>Redirections</h3>
+        <h3>Parameters</h3>
         <div id="redirections" class="redirections">
             <div id="redirections-paragraph" class="redirections-paragraph">
                 <!-- display all url parameters here -->
@@ -38,22 +38,35 @@
 
             params.forEach((value, key) => {
                 const paramElement = document.createElement('div');
-                paramElement.textContent = `\n${key}: ${value}`
-                redirectionsParagraph.appendChild(paramElement);
+                const keyElement = document.createElement('span');
+                keyElement.textContent = `${key}`;
+                keyElement.style.fontWeight = 'bold';
+                keyElement.style.textDecoration = 'underline';
+                paramElement.appendChild(keyElement);
+                paramElement.appendChild(document.createTextNode(`: ${value}`));
 
                 // Create copy button with clickable class
                 const copyButton = document.createElement('button');
                 copyButton.textContent = 'Copy';
                 copyButton.className = 'clickable'; // Assigning the clickable class
                 // make the button small and inline
-                copyButton.style = 'width: 8%; margin-left: 10px; padding: 5px; font-size: 0.8em;';
+                copyButton.style = 'width: 8%; margin-right: 10px; padding: 5px; font-size: 0.8em;';
                 copyButton.addEventListener('click', () => {
                     navigator.clipboard.writeText(value);
+                    copyButton.textContent = 'Copied!';
+                    copyButton.style.backgroundColor = 'lightgreen';
+                    copyButton.style.color = 'black';
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                        copyButton.style.backgroundColor = '';
+                        copyButton.style.color = '';
+                    }, 1000); // Reset button text after 1 second
                 });
-                paramElement.appendChild(copyButton);
-                
+                paramElement.insertBefore(copyButton, keyElement);
+
                 // add space
                 redirectionsParagraph.appendChild(document.createElement('br'));
+                redirectionsParagraph.appendChild(paramElement);
             });
         }
 
