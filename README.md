@@ -3,7 +3,7 @@
 - 🌱 I’m currently playing around with Ethereum Clients
 - 🧑‍💻 I'm working on the execution layer and payments
 - 💞️ I’m always ready to collaborate on indie projects
-- 📫 Reach out to me at hello@debjit.dev or through [twitter](https://twitter.com/BhowalDebjit)
+- 📫 Reach out to me at hello@debjit.dev or through [twitter](https://twitter.com/debjitbw)
 
 <!---
 - 📩 Subscribe to my newsletter [here](https://www.debjit.dev/newsletter)
